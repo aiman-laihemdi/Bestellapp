@@ -78,6 +78,11 @@ header img {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 320px;
+}
+
+.hero-content-heading-text-mobile p{
+    width: 320px;
 }
 
 .hero-content-rating{
@@ -105,16 +110,35 @@ header img {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     background: rgb(221, 218, 218);
-    padding: 10px;
+    padding: 20px 10px 10px;
+    position: relative;
 }
 
 .menu h2{
     font-family: 'Palanquin Dark';
     font-weight: 700;
     font-style: Bold;
-    font-size: 26px;
+    font-size: 23px;
+}
+
+.menu p{
+    width: 320px;
+}
+
+.menu img{
+    width: 100px;
+    border-radius: 15px;
+}
+
+.pizza-icon-small {
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 footer{
@@ -153,4 +177,9 @@ footer{
     justify-content: center;
 
     gap: 6px;
+}
+
+.footer-icon-copyright img{
+    width: 22px;
+    height: 22px;
 }
