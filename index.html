@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WURZEL & KRUME | Natürliches genießen</title>
-    <script src="./js/db.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/template.js"></script>
+    <script defer src="./js/db.js"></script>
+    <script defer src="./script.js"></script>
+    <script defer src="./js/template.js"></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./css/standards.css">
     <link rel="stylesheet" href="./css/assets.css">
@@ -14,28 +14,23 @@
     <link rel="stylesheet" href="./css/basket.css">
     <link rel="shortcut icon" href="./assets/icon/Kitchen__2_-removebg-preview.png" type="image/x-icon">
 </head>
-<body>
-    <header>
+<body onload="init()">
+    <header id="head">
         <img src="../assets/icon/Kitchen__2_-removebg-preview.png" alt="Logo von Wurzel & KRUME">
     </header>
 
     <main>
         <section class="hero"></section>
         <section class="hero-content-desktop">
-                <article class="hero-content-logo">
-                    <img src="../assets/icon/bx-removebg-preview.png" alt="Bild">
-                </article>
+                <img src="../assets/icon/bx-removebg-preview.png" alt="Bild">
                 <article class="hero-content-text">
-                    <h3 class="hero-content-heading-desktop">Wurzel & Krume</h3>
+                    <h1>Wurzel & Krume</h1>
                     <span class="hero-content-rating">
                         <p>★ <strong>4,9</strong></p>
                         <p>(288)</p>
                     </span>
-                    <span class="hero-content-text-mobile">
-                        <h3 class="hero-content-heading-mobile">Wurzel & Krume</h3>
-                        <p>Real food, pure ingredients, and the beauty of sourdough.</p>
-                    </span>
                 </article>
+                <p>Real food, pure ingredients, and the beauty of sourdough.</p>
         </section>
         <section>
             <article>
@@ -60,56 +55,14 @@
                     src="./assets/icon/Pizza-Icon-Small-removebg-preview.png" 
                     alt="Pizza Icon">
 
-            <article >
-                <article class="myDish">
-                    <img src="./assets/img/Neapolitanische Pizza Margherita mit Basilikum-1.png" alt="">
-                    <span></span><h3>Margherita</h3>
-                    <p>San Marzano tomato sauce, Fior di Latte, fresh basil & olive oil.</p>
-                    <p>12.90</p>
-                    <button></button>
-                </article>
-                <span class="myDish">
-                    <img src="./assets/img/Neapolitanische Pizza Margherita mit Basilikum-1.png" alt="">
-                    <h3>Margherita</h3>
-                    <p>San Marzano tomato sauce, Fior di Latte, fresh basil & olive oil.</p>
-                    <p>12.90</p>
-                    <button></button>
-                </span>
-                <span class="myDish">
-                    <img src="./assets/img/Neapolitanische Pizza Margherita mit Basilikum-1.png" alt="">
-                    <h3>Burrata</h3>
-                    <p>Tomato sauce, Fior di Latte, creamy burrata, cherry tomatoes & basil.</p>
-                    <p>15.90</p>
-                    <button></button>
-                </span>
-                <span class="myDish">
-                    <h3>Prosciutto</h3>
-                    <p>Tomato sauce, Fior di Latte, Italian prosciutto, fresh arugula & Parmesan.</p>
-                    <p>15.50</p>
-                    <button></button>
-                </span>
-                <span class="myDish">
-                    <h3>Verdura</h3>
-                    <p>Tomato sauce, Fior di Latte, grilled zucchini, eggplant & bell peppers.</p>
-                    <p>14.50</p>
-                    <button></button>
-                </span>
-                <span class="myDish">
-                    <h3>Diavola</h3>
-                    <p>Tomato sauce, Fior di Latte, spicy salami & chili oil.</p>
-                    <p>14.90</p>
-                    <button></button>
-                </span>
-                </span>
-                <span class="myDish">
-                    <h3>Quattro Formaggi</h3>
-                    <p>Fior di Latte, Gorgonzola, Parmesan & Taleggio.</p>
-                    <p>15.90</p>
-                    <button></button>
-                </span>
-            </article>
+            <article id="ourDishes"></article>
         </section>
     </main>
+
+    <dialog id="basketDialog" onclick="if(event.target === this) this.close()" class="dialog">
+        <img id="cartIcon" src="./assets/icon/shopping_cart (1).png" alt="Cart Icon">
+        <span id="cartCount">0</span>
+    </dialog>
 
     <footer>
         <section class="footer-links">
@@ -122,10 +75,16 @@
         </section>
         <section class="footer-mobile">
             <article class="footer-icons">
-                <img src="./assets/icon/Home.png" alt="Home Icon">
-                <img src="./assets/icon/Profile.png" alt="Profile Icon">
-                <img src="./assets/icon/orders.png" alt="Orders Icon">
-                <img src="./assets/icon/shopping_cart (1).png" alt="Cart Icon">
+                <a href="#head"><img src="./assets/icon/Home.png" alt="Home Icon"></a>
+                <a href=""><img src="./assets/icon/Profile.png" alt="Profile Icon"></a>
+                <a href=""><img src="./assets/icon/orders.png" alt="Orders Icon"></a>
+                <a href="#" id="cartBtn" onclick="openBasketDialog(); return false;">
+                    <img
+                        id="cartIcon"
+                        src="./assets/icon/shopping_cart (1).png"
+                        alt="Cart Icon"
+                    >
+                    <span id="cartCount">0</span></a>
             </article>
         </section>
     </footer>

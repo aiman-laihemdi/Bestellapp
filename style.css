@@ -1,6 +1,11 @@
 :root {
     --background-color1: rgb(205, 181, 159);
     --background-color2: rgb(221, 218, 218);
+    --background-color3: rgb(254, 254, 254);
+    --background-color4: rgb(0, 0, 0);
+    --background-color5: rgb(73, 73, 77);
+    --background-color6: rgba(0, 0, 0, 0.468);
+
 
 }
 
@@ -21,10 +26,14 @@ header img {
 }
 
 .hero {
-    background: url("../assets/img/sauerteig-pizza-hero.jpg") center / cover no-repeat;
+    /* background: url("../assets/img/sauerteig-pizza-hero.jpg") center / cover no-repeat; */
+    background: url(./assets/img/sauerteig-pizza-hero.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 20px;
     height: 320px;
-    max-width: 320px;
+    width: 300px;
 
     margin: auto;
     margin-top: 32px;
@@ -48,9 +57,7 @@ header img {
     font-family: 'Palanquin Dark';
     font-weight: 700;
     font-style: Bold;
-    font-size: 40px;
     text-align: center;
-
 }
 
 .hero-content-mobile{
@@ -68,8 +75,6 @@ header img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    font-size: 22px;
 }
 
 .hero-content-heading-text-mobile{
@@ -81,22 +86,22 @@ header img {
     width: 320px;
 }
 
-.hero-content-heading-text-mobile p{
-    width: 320px;
-}
-
 .hero-content-rating{
     display: flex;
     justify-content: center;
     align-items: center;
 
     gap: 8px;
-    width: 100px;
-    font-size: 18px;
+    width: 110px;
     background: var(--background-color1);
     padding-inline: 4px;
     margin-bottom: 20px;
 }
+
+.hero-content-rating p{
+    width: 40px;
+}
+
 
 .pate-pizza-icon{
     width: 120px;
@@ -112,7 +117,7 @@ header img {
     justify-content: center;
     flex-direction: column;
 
-    background: rgb(221, 218, 218);
+    background: var(--background-color1);
     padding: 20px 10px 10px;
     position: relative;
 }
@@ -121,15 +126,17 @@ header img {
     font-family: 'Palanquin Dark';
     font-weight: 700;
     font-style: Bold;
-    font-size: 23px;
 }
 
-.menu p{
-    width: 320px;
-}
-
-.menu img{
+.pizza-icon-small{
     width: 100px;
+}
+
+.menuIMG{
+    width: 260px;
+    height: 120px;
+
+    object-fit: cover;
     border-radius: 15px;
 }
 
@@ -142,15 +149,19 @@ header img {
 }
 
 footer{
-    background: rgb(221, 218, 218);
+    background: var(--background-color1);
 }
 
 .footer-mobile{
-    background: black;
-    padding: 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--background-color6);
 }
 
 .footer-icons{
@@ -167,8 +178,7 @@ footer{
     flex-direction: column;
 
     gap: 10px;
-    font-size: 18px;
-    padding-bottom: 20px;
+    padding-bottom: 90px;
 }
 
 .footer-icon-copyright{
@@ -183,3 +193,475 @@ footer{
     width: 22px;
     height: 22px;
 }
+
+.myDish{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 2px solid var(--background-color3);
+    border-radius: 20px;
+    gap: 20px;
+    width: 280px;
+
+    padding-inline: 10px;
+    padding-block: 10px;
+    margin-block: 20px;
+    background: var(--background-color3);
+}
+
+.contentDish{
+    width: 260px;
+}
+
+.priceBtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
+button{
+    border-radius: 8px;
+    width: 100%;
+}
+
+button:hover{
+    background: var(--background-color1);
+    color: white;
+}
+
+p{
+    max-width: 100%;
+}
+
+.dialog{
+    margin: auto;
+    background: var(--background-color4);
+    color: var(--background-color3);
+    border-radius: 20px;
+}
+
+.basket{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-block: 20px;
+    gap: 20px;
+}
+
+.basket p{
+    text-align: end;
+    width: 60px;
+}
+
+.basket button{
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 20px;
+    background: none;
+    border: none;
+    color: var(--background-color2);
+}
+
+.orderBasket{
+    background: var(--background-color5);
+
+}
+
+.totalCost{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 240px;
+
+    border-top: solid 2px white;
+}
+
+table{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+tr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 240px;
+}
+
+.orderBasket{
+    background: var(--background-color4);
+}
+
+.orderBasketDialog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+#cartBtn {
+    position: relative;
+    display: inline-flex;
+}
+
+#cartIcon {
+    width: 30px;
+    height: 30px;
+}
+
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    background: orange;
+    color: white;
+
+    font-weight: bold;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: rotate(15deg);
+}
+
+.basket-controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.basket-controls button{
+    padding: 0px;
+}
+
+.btnAdd{
+    width: 400px;
+}
+
+
+
+@media screen and (min-width:481px) and (max-width:768px){
+    .hero{
+        border-radius: 0px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero-content-desktop img{
+        width: 160px;
+        height: 160px;
+
+        background: var(--background-color1);
+        border-radius: 100%;
+    }
+
+
+    .hero-content-desktop{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        transform: translate(0px, -60px);
+        gap: 20px;
+    }
+
+    .hero-content-desktop p{
+        line-height: 1.6;
+        text-align: center;
+    }
+
+.hero-content-heading-desktop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.hero-content-rating{
+    gap: 12px;
+    width: 130px;
+    margin-bottom: 0px;
+}
+
+.hero-content-heading-mobile{
+    display: none;
+}
+
+.hero-content-mobile{
+    display: none;
+}
+
+.hero-content-text-mobile{
+    display: none;
+}
+
+.hero-content-heading-text-mobile{
+    display: none;
+    
+}
+
+.pate-pizza-icon{
+    width: 120px;
+    height: 120px;
+
+    background: var(--background-color1);
+    border-radius: 100%;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background: var(--background-color1);
+    padding: 20px 10px 10px;
+    position: relative;
+}
+
+.pizza-icon-small{
+    width: 100px;
+}
+
+.menuIMG{
+    width: 300px;
+    height: 120px;
+
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.pizza-icon-small {
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer{
+    background: var(--background-color1);
+}
+
+.footer-mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--background-color6);
+}
+
+.footer-icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+}
+
+.footer-links{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 10px;
+    padding-bottom: 90px;
+}
+
+.footer-icon-copyright{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+}
+
+.footer-icon-copyright img{
+    width: 22px;
+    height: 22px;
+}
+
+.myDish{
+    display: flex;
+    flex-direction: column;
+
+    border: 2px solid var(--background-color3);
+    border-radius: 20px;
+    gap: 20px;
+    width: 320px;
+
+    padding-inline: 10px;
+    padding-block: 10px;
+    margin-block: 20px;
+    background: var(--background-color3);
+}
+
+.priceBtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 10px;
+}
+
+button{
+    border-radius: 8px;
+    width: 100%;
+}
+
+button:hover{
+    background: var(--background-color1);
+    color: white;
+}
+
+p{
+    max-width: 100%;
+}
+
+.dialog{
+    margin: auto;
+    background: var(--background-color4);
+    color: var(--background-color3);
+    border-radius: 20px;
+}
+
+.basket{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-block: 20px;
+    gap: 20px;
+}
+
+.basket p{
+    text-align: end;
+    width: 60px;
+}
+
+.basket button{
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 20px;
+    background: none;
+    border: none;
+    color: var(--background-color2);
+}
+
+.orderBasket{
+    background: var(--background-color5);
+
+}
+
+.totalCost{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 240px;
+
+    border-top: solid 2px white;
+}
+
+table{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+tr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 240px;
+}
+
+.orderBasket{
+    background: var(--background-color4);
+}
+
+.orderBasketDialog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+#cartBtn {
+    position: relative;
+    display: inline-flex;
+}
+
+#cartIcon {
+    width: 30px;
+    height: 30px;
+}
+
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    background: orange;
+    color: white;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: rotate(15deg);
+}
+
+.basket-controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.basket-controls button{
+    padding: 0px;
+}
+
+}
+
