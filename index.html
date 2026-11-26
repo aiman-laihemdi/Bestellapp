@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="./css/assets.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/basket.css">
-    <link rel="shortcut icon" href="../assets/icon/Kitchen__2_-removebg-preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/icon/Kitchen__2_-removebg-preview.png" type="image/x-icon">
 </head>
 <body onload="init()">
     <header>
-        <section class="head content">
+        <section class="head content" id="head">
             <span>
-                <img class="logo" src="../assets/icon/Kitchen__2_-removebg-preview.png" alt="Logo von Wurzel & KRUME">
+                <img class="logo" src="./assets/icon/Kitchen__2_-removebg-preview.png" alt="Logo von Wurzel & KRUME">
             </span>
             <span>
-                <img class="menu-logo" src="../assets/icon/menu.png" alt="menu button">
+                <img class="menu-logo" src="./assets/icon/menu.png" alt="menu button">
             </span>
         </section>
     </header>
@@ -29,7 +29,7 @@
     <main>
         <section class="hero"></section>
         <section class="hero-content-desktop">
-                <img src="../assets/icon/bx-removebg-preview.png" alt="Bild">
+                <img src="./assets/icon/bx-removebg-preview.png" alt="Bild">
                 <article class="hero-content-text">
                     <h1>Wurzel & Krume</h1>
                     <span class="hero-content-rating">
@@ -42,7 +42,7 @@
         <section>
             <article>
                 <div class="hero-content-mobile">
-                    <img class="pate-pizza-icon" src="../assets/icon/bx-removebg-preview.png" alt="Bild">
+                    <img class="pate-pizza-icon" src="./assets/icon/bx-removebg-preview.png" alt="Bild">
                     <span class="hero-content-text-mobile">
                         <span class="hero-content-rating">
                             <p>★ <strong>4,9</strong></p>
@@ -59,14 +59,14 @@
         <div class="headingMenu">
             <h2>The Art of Sourdough Pizza</h2>
             <span class="pizza-icon">
-                <img src="../assets/icon/Pizza-Icon-Small-removebg-preview.png" alt="piza icon">
+                <img src="./assets/icon/Pizza-Icon-Small-removebg-preview.png" alt="piza icon">
             </span>
         </div>
         <div class="desktopBasketContainer">
         <section id="ourMenu" class="menu">
             <h2 id="ourMenuHeadline">The Art of Sourdough Pizza</h2>
             <img    class="pizza-icon-small"
-                    src="../assets/icon/Pizza-Icon-Small-removebg-preview.png" 
+                    src="./assets/icon/Pizza-Icon-Small-removebg-preview.png" 
                     alt="Pizza Icon">
 
             <article id="ourDishes"></article>
@@ -91,9 +91,10 @@
         </section>
     </main>
 
-    <dialog id="basketDialog" onclick="if(event.target === this) this.close()" class="dialog">
-        <img id="cartIcon" src="../assets/icon/shopping_cart (1).png" alt="Cart Icon">
-        <span id="cartCount">0</span>
+    <dialog
+        id="basketDialog"
+        onclick="if(event.target === this) this.close()"
+        class="dialog">
     </dialog>
 
     <footer>
@@ -102,19 +103,19 @@
                 <a href="">Imprint</a>
                 <a href="">Cookie Preferences</a>
             <span class="footer-icon-copyright">
-                <img src="../assets/icon/copyright-regular-full.svg" alt="copyright icon">
+                <img src="./assets/icon/copyright-regular-full.svg" alt="copyright icon">
                 <a href="">2025 Wurzel & krume</a>
             </span>
             </article>
             <article class="footer-mobile">
                 <div class="footer-icons">
-                    <a href="#head"><img src="../assets/icon/Home.png" alt="Home Icon"></a>
-                    <a href=""><img src="../assets/icon/Profile.png" alt="Profile Icon"></a>
-                    <a href=""><img src="../assets/icon/orders.png" alt="Orders Icon"></a>
+                    <a href="#head"><img src="./assets/icon/Home.png" alt="Home Icon"></a>
+                    <a href=""><img src="./assets/icon/Profile.png" alt="Profile Icon"></a>
+                    <a href=""><img src="./assets/icon/orders.png" alt="Orders Icon"></a>
                     <a href="#" id="cartBtn" onclick="openBasketDialog(); return false;">
                         <img
                             id="cartIcon"
-                            src="../assets/icon/shopping_cart (1).png"
+                            src="./assets/icon/shopping_cart (1).png"
                             alt="Cart Icon"
                         >
                     <span id="cartCount">0</span></a>

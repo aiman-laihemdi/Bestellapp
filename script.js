@@ -1,52 +1,59 @@
+
 const basketDialog = document.getElementById("basketDialog");
 
 // functions
-function init(){
+function init() {
     renderOurDishes();
     renderBasketDialog();
     renderDesktopBasket();
     renderOrderBasket();
 }
 
-function renderOurDishes(){
-    let ourDishes = document.getElementById("ourDishes")
-        ourDishes.innerHTML = "";
+// MENU
+function renderOurDishes() {
+    let ourDishes = document.getElementById("ourDishes");
+    ourDishes.innerHTML = "";
 
     for (let i = 0; i < dishes.length; i++) {
         let dish = dishes[i];
-
         ourDishes.innerHTML += getHTMLDishes(dish, i);
     }
+}
 
-};
-
-function getHTMLDishes(dish, i){
+function getHTMLDishes(dish, i) {
     return `
-            <div class="myDish">
-                    <img class="menuIMG" src="${dish.img}" alt="${dish.name}">
-                    <div class="contentDish">
-                        <h3>${dish.name}</h3>
-                        <p>${dish.Ingredients}</p>
-                        <span class="priceBtn">
-                            <p>${dish.price.toFixed(2).replace(".",(","))} €</p>
-                            <button onclick="addToBasket(${i})" class="btnAdd">Add to basket</button>
-                        </span>
-                    </div>
+        <div class="myDish">
+            <img class="menuIMG" src="${dish.img}" alt="${dish.name}">
+            <div class="contentDish">
+                <h3>${dish.name}</h3>
+                <p>${dish.Ingredients}</p>
+                <span class="priceBtn">
+                    <p>${dish.price.toFixed(2).replace(".", ",")} €</p>
+                    <button onclick="addToBasket(${i})" class="btnAdd">
+                        Add to basket
+                    </button>
+                </span>
             </div>
-    `
-};
+        </div>
+    `;
+}
 
-function getMyDialogHTML(type){
+// BASKET HTML
+function getMyDialogHTML(type) {
     return `
         <section class="basket">
 
-            ${type === "mobile" ? 
+            ${type === "mobile" ?
                 '<button class="closeBtn" onclick="closeBasketDialog()">✕</button>' : ""}
 
             <h1>Your Basket</h1>
 
             <p id="emptyCart-${type}" class="empty-cart">
                 Your cart is empty
+                <img
+                    class="cartDesk"
+                    src="./assets/icon/shopping_cart (1).png"
+                    alt="Shopping cart from Wurzel & KRUME">
             </p>
 
             <div id="orderBasket-${type}" class="orderBasket"></div>
@@ -79,20 +86,20 @@ function getMyDialogHTML(type){
     `;
 }
 
-
-function openBasketDialog(i){
+// OPEN / CLOSE BASKET
+function openBasketDialog() {
     let ourBasketDialog = document.getElementById("basketDialog");
-    
+
     renderOrderBasket();
-    
     ourBasketDialog.showModal();
 }
 
-function closeBasketDialog(){
+function closeBasketDialog() {
     let ourBasketDialog = document.getElementById("basketDialog");
     ourBasketDialog.close();
 }
 
+// ADD TO BASKET
 function addToBasket(i) {
     let dish = dishes[i];
 
@@ -111,15 +118,13 @@ function addToBasket(i) {
     renderOrderBasket();
 }
 
-function renderOrderBasket(){
-
+// RENDER BASKET
+function renderOrderBasket() {
     renderBasketItems("mobile");
     renderBasketItems("desktop");
-
 }
 
-function renderBasketItems(type){
-
+function renderBasketItems(type) {
     let orderBasket = document.getElementById(`orderBasket-${type}`);
 
     if (!orderBasket) return;
@@ -133,7 +138,6 @@ function renderBasketItems(type){
     basketSummary.style.display = basket.length === 0 ? "none" : "flex";
 
     for (let i = 0; i < basket.length; i++) {
-
         let myBasket = basket[i];
 
         orderBasket.innerHTML += `
@@ -156,14 +160,13 @@ function renderBasketItems(type){
     calculateBasket(type);
 }
 
+// CALCULATE BASKET
 function calculateBasket(type) {
-
     let subtotal = basket.reduce((sum, dish) => {
         return sum + dish.price * dish.quantity;
     }, 0);
 
     let deliveryFee = basket.length > 0 ? 4.99 : 0;
-
     let total = subtotal + deliveryFee;
 
     document.getElementById(`subtotal-${type}`).innerHTML =
@@ -179,6 +182,7 @@ function calculateBasket(type) {
         deliveryFee.toFixed(2).replace(".", ",") + " €";
 }
 
+// CART ICON
 function updateCartIcon() {
     let cartCount = document.getElementById("cartCount");
 
@@ -189,6 +193,7 @@ function updateCartIcon() {
     cartCount.innerHTML = totalQuantity;
 }
 
+// CHANGE QUANTITY
 function changeQuantity(index, amount) {
     basket[index].quantity += amount;
 
@@ -196,43 +201,71 @@ function changeQuantity(index, amount) {
         basket.splice(index, 1);
     }
 
-    renderOrderBasket();
     updateCartIcon();
+    renderOrderBasket();
 }
 
+// PAY ORDER
 function payOrder() {
     if (basket.length === 0) {
         alert("Your basket is empty!");
         return;
     }
 
+    if (document.getElementById("successOverlay")) return;
+
     document.body.insertAdjacentHTML("beforeend", `
         <div class="success-overlay" id="successOverlay">
             <div class="success-modal">
-                <img src="..assets/icon/wk-logo-removebg-preview.png" alt="Delicious pizza">
+                <img
+                    src="./assets/icon/wk-logo-removebg-preview.png"
+                    alt="Wurzel & KRUME delivery van">
 
                 <h2>Thank you for your order!</h2>
 
-                <span class="succes-overlay-btn">
+                <div class="continueBtn">
                     <button class="btnOrderConfirm" onclick="closeSuccessModal()">
                         Continue
                     </button>
-                </span>
+                </div>
             </div>
         </div>
     `);
+
+    basket = [];
+
+    updateCartIcon();
+
+    // Mobile: Warenkorb-Dialog schließen
+    if (window.innerWidth < 1110) {
+        closeBasketDialog();
+    }
+
+    // Desktop: Warenkorb-Inhalt aktualisieren
+    else {
+        renderOrderBasket();
+    }
+
+    setTimeout(closeSuccessModal, 3000);
 }
 
-function renderBasketDialog(){
+// CLOSE SUCCESS MODAL
+function closeSuccessModal() {
+    let successOverlay = document.getElementById("successOverlay");
+
+    if (successOverlay) {
+        successOverlay.remove();
+    }
+}
+
+// INITIALIZE MOBILE BASKET
+function renderBasketDialog() {
     let ourBasketDialog = document.getElementById("basketDialog");
     ourBasketDialog.innerHTML = getMyDialogHTML("mobile");
 }
 
-function renderDesktopBasket(){
+// INITIALIZE DESKTOP BASKET
+function renderDesktopBasket() {
     let desktopBasket = document.getElementById("desktopBasketContent");
     desktopBasket.innerHTML = getMyDialogHTML("desktop");
-}
-
-function closeSuccessModal() {
-    document.getElementById("successOverlay").remove();
 }
