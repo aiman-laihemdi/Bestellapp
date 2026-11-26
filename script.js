@@ -4,6 +4,7 @@ const basketDialog = document.getElementById("basketDialog");
 function init(){
     renderOurDishes();
     renderBasketDialog();
+    renderDesktopBasket();
     renderOrderBasket();
 }
 
@@ -28,46 +29,57 @@ function getHTMLDishes(dish, i){
                         <p>${dish.Ingredients}</p>
                         <span class="priceBtn">
                             <p>${dish.price.toFixed(2).replace(".",(","))} €</p>
-                            <button onclick="addToBasket(${i})" class="btnAdd">add to basket</button>
+                            <button onclick="addToBasket(${i})" class="btnAdd">Add to basket</button>
                         </span>
                     </div>
             </div>
     `
 };
 
-function renderBasketDialog(){
-    let ourBasketDialog = document.getElementById("basketDialog");
-        ourBasketDialog.innerHTML = getMyDialogHTML();
-
-}
-
-function getMyDialogHTML(){
+function getMyDialogHTML(type){
     return `
-            <section id="basket" class="basket">
-                    <button onclick="closeBasketDialog()">✕</button>
-                    <h1>Your Basket</h1>
-                <div id="orderBasket" class="orderBasket">
-                    <h3>Your Basket</h3>
-                </div>
+        <section class="basket">
+
+            ${type === "mobile" ? 
+                '<button class="closeBtn" onclick="closeBasketDialog()">✕</button>' : ""}
+
+            <h1>Your Basket</h1>
+
+            <p id="emptyCart-${type}" class="empty-cart">
+                Your cart is empty
+            </p>
+
+            <div id="orderBasket-${type}" class="orderBasket"></div>
+
+            <div id="basketSummary-${type}" class="basket-summary">
+
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                        <td id="subtotal">0,00 €</td>
+                        <td id="subtotal-${type}">0,00 €</td>
                     </tr>
                     <tr>
                         <td>Delivery fee</td>
-                        <td id="deliveryFee">4,99 €</td>
+                        <td id="deliveryFee-${type}">0,00 €</td>
                     </tr>
                 </table>
+
                 <table class="totalCost">
                     <tr>
                         <td>Total</td>
-                        <td id="total">0,00 €</td>
+                        <td id="total-${type}">0,00 €</td>
                     </tr>
                 </table>
-            </section>
-    `
-};
+
+                <button class="btnPay" onclick="payOrder()">
+                    Pay <span id="payTotal-${type}">0,00 €</span>
+                </button>
+
+            </div>
+        </section>
+    `;
+}
+
 
 function openBasketDialog(i){
     let ourBasketDialog = document.getElementById("basketDialog");
@@ -105,10 +117,28 @@ function addToBasket(i) {
 }
 
 function renderOrderBasket(){
-    let orderBasket = document.getElementById("orderBasket");
+
+    renderBasketItems("mobile");
+    renderBasketItems("desktop");
+
+}
+
+function renderBasketItems(type){
+
+    let orderBasket = document.getElementById(`orderBasket-${type}`);
+
+    if (!orderBasket) return;
+
     orderBasket.innerHTML = "";
 
+    let emptyCart = document.getElementById(`emptyCart-${type}`);
+    let basketSummary = document.getElementById(`basketSummary-${type}`);
+
+    emptyCart.style.display = basket.length === 0 ? "block" : "none";
+    basketSummary.style.display = basket.length === 0 ? "none" : "flex";
+
     for (let i = 0; i < basket.length; i++) {
+
         let myBasket = basket[i];
 
         orderBasket.innerHTML += `
@@ -128,43 +158,40 @@ function renderOrderBasket(){
         `;
     }
 
-    calculateBasket();
+    calculateBasket(type);
 }
 
-function calculateBasket() {
+function calculateBasket(type) {
+
     let subtotal = basket.reduce((sum, dish) => {
         return sum + dish.price * dish.quantity;
     }, 0);
 
-    let deliveryFee;
-
-    if (basket.length > 0) {
-        deliveryFee = 4.99;
-    } else {
-        deliveryFee = 0;
-    }
+    let deliveryFee = basket.length > 0 ? 4.99 : 0;
 
     let total = subtotal + deliveryFee;
 
-    document.getElementById("subtotal").innerHTML =
-    subtotal.toFixed(2).replace(".", ",") + " €";
+    document.getElementById(`subtotal-${type}`).innerHTML =
+        subtotal.toFixed(2).replace(".", ",") + " €";
 
-    document.getElementById("total").innerHTML =
-    total.toFixed(2).replace(".", ",") + " €";
+    document.getElementById(`total-${type}`).innerHTML =
+        total.toFixed(2).replace(".", ",") + " €";
 
-    document.getElementById("deliveryFee").innerHTML =
-    deliveryFee.toFixed(2).replace(".", ",") + " €";
+    document.getElementById(`payTotal-${type}`).innerHTML =
+        total.toFixed(2).replace(".", ",") + " €";
+
+    document.getElementById(`deliveryFee-${type}`).innerHTML =
+        deliveryFee.toFixed(2).replace(".", ",") + " €";
 }
 
 function updateCartIcon() {
-    let cartIcon = document.getElementById("cartIcon");
     let cartCount = document.getElementById("cartCount");
 
-    cartCount.innerHTML = basket.length;
+    let totalQuantity = basket.reduce((sum, dish) => {
+        return sum + dish.quantity;
+    }, 0);
 
-    cartIcon.src = basket.length > 0
-        ? "./assets/icon/shopping_cart.png"
-        : "./assets/icon/shopping_cart (1).png";
+    cartCount.innerHTML = totalQuantity;
 }
 
 function changeQuantity(index, amount) {
@@ -176,4 +203,41 @@ function changeQuantity(index, amount) {
 
     renderOrderBasket();
     updateCartIcon();
+}
+
+function payOrder() {
+    if (basket.length === 0) {
+        alert("Your basket is empty!");
+        return;
+    }
+
+    document.body.insertAdjacentHTML("beforeend", `
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-modal">
+                <img src="assets/icon/wk-logo-removebg-preview.png" alt="Delicious pizza">
+
+                <h2>Thank you for your order!</h2>
+
+                <span class="succes-overlay-btn">
+                    <button class="btnOrderConfirm" onclick="closeSuccessModal()">
+                        Continue
+                    </button>
+                </span>
+            </div>
+        </div>
+    `);
+}
+
+function renderBasketDialog(){
+    let ourBasketDialog = document.getElementById("basketDialog");
+    ourBasketDialog.innerHTML = getMyDialogHTML("mobile");
+}
+
+function renderDesktopBasket(){
+    let desktopBasket = document.getElementById("desktopBasketContent");
+    desktopBasket.innerHTML = getMyDialogHTML("desktop");
+}
+
+function closeSuccessModal() {
+    document.getElementById("successOverlay").remove();
 }

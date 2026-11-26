@@ -15,8 +15,15 @@
     <link rel="shortcut icon" href="./assets/icon/Kitchen__2_-removebg-preview.png" type="image/x-icon">
 </head>
 <body onload="init()">
-    <header id="head">
-        <img src="../assets/icon/Kitchen__2_-removebg-preview.png" alt="Logo von Wurzel & KRUME">
+    <header>
+        <section class="head content">
+            <span>
+                <img class="logo" src="../assets/icon/Kitchen__2_-removebg-preview.png" alt="Logo von Wurzel & KRUME">
+            </span>
+            <span>
+                <img class="menu-logo" src="./assets/icon/menu.png" alt="menu button">
+            </span>
+        </section>
     </header>
 
     <main>
@@ -30,7 +37,7 @@
                         <p>(288)</p>
                     </span>
                 </article>
-                <p>Real food, pure ingredients, and the beauty of sourdough.</p>
+                <p id="hero-p">Real food, pure ingredients, and the beauty of sourdough.</p>
         </section>
         <section>
             <article>
@@ -49,13 +56,38 @@
                 </div>
             </article>
         </section>
-        <section id="ourMenu" class="menu">
+        <div class="headingMenu">
             <h2>The Art of Sourdough Pizza</h2>
+            <span class="pizza-icon">
+                <img src="./assets/icon/Pizza-Icon-Small-removebg-preview.png" alt="piza icon">
+            </span>
+        </div>
+        <div class="desktopBasketContainer">
+        <section id="ourMenu" class="menu">
+            <h2 id="ourMenuHeadline">The Art of Sourdough Pizza</h2>
             <img    class="pizza-icon-small"
                     src="./assets/icon/Pizza-Icon-Small-removebg-preview.png" 
                     alt="Pizza Icon">
 
             <article id="ourDishes"></article>
+        </section>
+        <section id="desktopBasket">
+            <div id="desktopBasketContent"></div>
+        </section>
+        </div>
+        <section id="about" class="about">
+            <h2>Naturally Made. Honestly Crafted.</h2>
+            <p>
+                At WURZEL & KRUME, we believe that great pizza starts with time, passion and carefully selected ingredients.
+                That's why we focus on traditional sourdough, quality organic ingredients and honest craftsmanship. Our dough is given the time it needs to develop its distinctive flavour, light texture and natural character.
+                We believe in keeping things simple. No unnecessary artificial additives, no shortcuts – just natural ingredients, traditional methods and a genuine love for good food.
+                Every pizza is carefully prepared with attention to detail, from the first step of sourdough preparation to the very last bite.
+            </p>
+
+            <h4>Our philosophy is simple:</h4>
+            <p>Less artificial. More natural. More flavour.</p>
+
+            <h3>WURZEL & KRUME – Real pizza. Naturally.</h3>
         </section>
     </main>
 
@@ -65,26 +97,28 @@
     </dialog>
 
     <footer>
-        <section class="footer-links">
-            <a href="">Imprint</a>
-            <a href="">Cookie Preferences</a>
+        <section class="footer">
+            <article class="footer-links content">
+                <a href="">Imprint</a>
+                <a href="">Cookie Preferences</a>
             <span class="footer-icon-copyright">
                 <img src="./assets/icon/copyright-regular-full.svg" alt="copyright icon">
                 <a href="">2025 Wurzel & krume</a>
             </span>
-        </section>
-        <section class="footer-mobile">
-            <article class="footer-icons">
-                <a href="#head"><img src="./assets/icon/Home.png" alt="Home Icon"></a>
-                <a href=""><img src="./assets/icon/Profile.png" alt="Profile Icon"></a>
-                <a href=""><img src="./assets/icon/orders.png" alt="Orders Icon"></a>
-                <a href="#" id="cartBtn" onclick="openBasketDialog(); return false;">
-                    <img
-                        id="cartIcon"
-                        src="./assets/icon/shopping_cart (1).png"
-                        alt="Cart Icon"
-                    >
+            </article>
+            <article class="footer-mobile">
+                <div class="footer-icons">
+                    <a href="#head"><img src="./assets/icon/Home.png" alt="Home Icon"></a>
+                    <a href=""><img src="./assets/icon/Profile.png" alt="Profile Icon"></a>
+                    <a href=""><img src="./assets/icon/orders.png" alt="Orders Icon"></a>
+                    <a href="#" id="cartBtn" onclick="openBasketDialog(); return false;">
+                        <img
+                            id="cartIcon"
+                            src="./assets/icon/shopping_cart (1).png"
+                            alt="Cart Icon"
+                        >
                     <span id="cartCount">0</span></a>
+                </div>
             </article>
         </section>
     </footer>
