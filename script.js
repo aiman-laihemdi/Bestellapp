@@ -74,7 +74,6 @@ function getMyDialogHTML(type){
                 <button class="btnPay" onclick="payOrder()">
                     Pay <span id="payTotal-${type}">0,00 €</span>
                 </button>
-
             </div>
         </section>
     `;
@@ -110,10 +109,6 @@ function addToBasket(i) {
 
     updateCartIcon();
     renderOrderBasket();
-
-    // if (!basketDialog.open) {
-    //     basketDialog.showModal();
-    // }
 }
 
 function renderOrderBasket(){
@@ -214,7 +209,7 @@ function payOrder() {
     document.body.insertAdjacentHTML("beforeend", `
         <div class="success-overlay" id="successOverlay">
             <div class="success-modal">
-                <img src="assets/icon/wk-logo-removebg-preview.png" alt="Delicious pizza">
+                <img src="..assets/icon/wk-logo-removebg-preview.png" alt="Delicious pizza">
 
                 <h2>Thank you for your order!</h2>
 
