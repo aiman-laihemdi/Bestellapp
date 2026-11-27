@@ -1,4 +1,4 @@
-
+//Global
 const basketDialog = document.getElementById("basketDialog");
 
 // functions
